@@ -27,6 +27,7 @@ module HostInfoPlugin
               ensure
                 Socket.do_not_reverse_lookup = orig
               end
+            end
         end
     end
 end
