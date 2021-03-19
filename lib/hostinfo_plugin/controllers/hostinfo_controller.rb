@@ -12,7 +12,8 @@ module HostInfoPlugin
 
                     Rails.cache.write( :hostinfo_cache, expected_value )
                     value = expected_value
-                
+                end
+
                 value
             end
 
