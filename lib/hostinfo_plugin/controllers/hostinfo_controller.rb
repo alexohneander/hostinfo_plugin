@@ -5,8 +5,15 @@ module HostInfoPlugin
         class HostInfoController
 
             def self.get_host_info
-                ip = HostInfoPlugin::Controllers::HostInfoController.local_ip()
-                value = Socket.gethostname + ' - ' + ip
+                value = Rails.cache.read( :hostinfo_cache )
+                if value.nil?
+                    ip = HostInfoPlugin::Controllers::HostInfoController.local_ip()
+                    expected_value = Socket.gethostname + ' - ' + ip
+
+                    Rails.cache.write( :hostinfo_cache, expected_value )
+                    value = expected_value
+                
+                value
             end
 
             def self.local_ip
