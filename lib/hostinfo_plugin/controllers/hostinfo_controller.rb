@@ -12,7 +12,7 @@ module HostInfoPlugin
 
                     Rails.cache.write( :hostinfo_cache, expected_value )
                     value = expected_value
-                end
+                end 
 
                 value
             end
@@ -27,7 +27,6 @@ module HostInfoPlugin
               ensure
                 Socket.do_not_reverse_lookup = orig
               end
-            end
         end
     end
 end
